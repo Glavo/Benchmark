@@ -5,11 +5,15 @@ sudo apt install \
   libfreetype6-dev libgnutls28-dev libmp3lame-dev libsdl2-dev libtool \
   libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev \
   meson ninja-build pkg-config texinfo wget yasm zlib1g-dev \
-  libunistring-dev libaom-dev libdav1d-dev libopus-dev
+  libvpx-dev libx264-dev libx265-dev libnuma-dev \
+  libunistring-dev libaom-dev libdav1d-dev libopus-dev libomxil-bellagio-dev
 
-FFMPEG_BUILD_DIR="$HOME/ffmpeg_build"
+FFMPEG_BUILD_DIR="$HOME/Build/ffmpeg"
 FFMPEG_BIN_DIR="$FFMPEG_BUILD_DIR/bin"
 FFMPEG_VERSION="7.1"
+
+export CC=gcc-14
+export CXX=g++-14
 
 cd /tmp && \
 wget -O "ffmpeg-$FFMPEG_VERSION.tar.xz" "https://ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.xz" && \
@@ -27,12 +31,16 @@ PATH="$FFMPEG_BIN_DIR:$PATH" PKG_CONFIG_PATH="$FFMPEG_BUILD_DIR/lib/pkgconfig" .
   --bindir="$FFMPEG_BIN_DIR" \
   --enable-gpl \
   --enable-gnutls \
+  --enable-libaom \
   --enable-libass \
   --enable-libfreetype \
   --enable-libmp3lame \
   --enable-libopus \
   --enable-libvorbis \
   --enable-omx \
+  --enable-libvpx \
+  --enable-libx264 \
+  --enable-libx265 \
   --enable-nonfree && \
 PATH="$FFMPEG_BIN_DIR:$PATH" make && \
 make install && \
