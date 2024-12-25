@@ -24,12 +24,16 @@ rm /dev/shm/Bosphorus_h264.mp4
 rm /dev/shm/Bosphorus_h265.mp4
 
 ## Encode
-if [ ! -z "$(ffmpeg -encoders 2>/dev/null | grep h264_omx)" ]; then
-   unzstd -k -o /tmp/Bosphorus_3840x2160.y4m "$DATA_DIR/Bosphorus_3840x2160.y4m.zst"
-   ffmpeg -i /tmp/Bosphorus_3840x2160.y4m -c:v h264_omx -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h264_encode.txt"
+
+if [ ! -z "$(cat /proc/cpuinfo | grep 'Raspberry Pi 4 Model B')" ]; then
+   : # Unsupported
+else
+   if [ ! -z "$(ffmpeg -encoders 2>/dev/null | grep h264_omx)" ]; then
+      ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v h264_omx -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h264_encode.txt"
+   fi
 
    if [ ! -z "$(ffmpeg -encoders 2>/dev/null | grep hevc_omx)" ]; then
-      ffmpeg -i /tmp/Bosphorus_3840x2160.y4m -c:v hevc_omx -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h265_encode.txt"
+      ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v hevc_omx -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h265_encode.txt"
    fi
 fi
 

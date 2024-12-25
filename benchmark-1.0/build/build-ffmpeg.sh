@@ -1,9 +1,5 @@
 #!/usr/bin/bash
 
-
-
-
-
 FFMPEG_BUILD_DIR="$HOME/Build/ffmpeg"
 FFMPEG_BIN_DIR="$FFMPEG_BUILD_DIR/bin"
 FFMPEG_VERSION="7.1"
