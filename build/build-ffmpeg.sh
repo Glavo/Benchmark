@@ -22,28 +22,29 @@ fi
 cd "/tmp/ffmpeg-$FFMPEG_VERSION"
 
 PATH="$FFMPEG_BIN_DIR:$PATH" PKG_CONFIG_PATH="$FFMPEG_BUILD_DIR/lib/pkgconfig" ./configure \
-  --prefix="$FFMPEG_BUILD_DIR" \
-  --pkg-config-flags="--static" \
-  --extra-cflags="-I$FFMPEG_BUILD_DIR/include" \
-  --extra-ldflags="-L$FFMPEG_BUILD_DIR/lib" \
-  --extra-libs="-lpthread -lm" \
-  --cc=$CC \
-  --cxx=$CXX \
-  --ld=$CXX \
-  --bindir="$FFMPEG_BIN_DIR" \
-  --enable-gpl \
-  --enable-gnutls \
-  --enable-libaom \
-  --enable-libass \
-  --enable-libfreetype \
-  --enable-libmp3lame \
-  --enable-libopus \
-  --enable-libvorbis \
-  --enable-omx \
-  --enable-libvpx \
-  --enable-libx264 \
-  --enable-libx265 \
-  --enable-nonfree
+    --prefix="$FFMPEG_BUILD_DIR" \
+    --pkg-config-flags="--static" \
+    --extra-cflags="-I$FFMPEG_BUILD_DIR/include" \
+    --extra-ldflags="-L$FFMPEG_BUILD_DIR/lib" \
+    --extra-libs="-lpthread -lm" \
+    --cc=$CC \
+    --cxx=$CXX \
+    --ld=$CXX \
+    --bindir="$FFMPEG_BIN_DIR" \
+    --enable-gpl \
+    --enable-gnutls \
+    --enable-libaom \
+    --enable-libass \
+    --enable-libfreetype \
+    --enable-libmp3lame \
+    --enable-libopus \
+    --enable-libvorbis \
+    --enable-omx \
+    --enable-libvpx \
+    --enable-libx264 \
+    --enable-libx265 \
+    --enable-v4l2-m2m \
+    --enable-nonfree
 PATH="$FFMPEG_BIN_DIR:$PATH" make
 make install
 hash -r
