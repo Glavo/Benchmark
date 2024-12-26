@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -e
+
 FFMPEG_BUILD_DIR="$HOME/Build/ffmpeg"
 FFMPEG_BIN_DIR="$FFMPEG_BUILD_DIR/bin"
 FFMPEG_VERSION="7.1"
@@ -7,10 +9,18 @@ FFMPEG_VERSION="7.1"
 export CC=gcc-14
 export CXX=g++-14
 
-cd /tmp && \
-wget -O "ffmpeg-$FFMPEG_VERSION.tar.xz" "https://ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.xz" && \
-tar xvf "ffmpeg-$FFMPEG_VERSION.tar.xz" && \
-cd "ffmpeg-$FFMPEG_VERSION" && \
+cd /tmp
+
+if [ ! -f "/tmp/ffmpeg-$FFMPEG_VERSION" ]; then
+    if [ ! -f "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz" ]; then
+        wget -O "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz.tmp" "https://ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.xz" && \
+            mv "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz.tmp" "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz"
+    fi
+    tar xvf "ffmpeg-$FFMPEG_VERSION.tar.xz"
+fi
+
+cd "/tmp/ffmpeg-$FFMPEG_VERSION"
+
 PATH="$FFMPEG_BIN_DIR:$PATH" PKG_CONFIG_PATH="$FFMPEG_BUILD_DIR/lib/pkgconfig" ./configure \
   --prefix="$FFMPEG_BUILD_DIR" \
   --pkg-config-flags="--static" \
@@ -33,7 +43,7 @@ PATH="$FFMPEG_BIN_DIR:$PATH" PKG_CONFIG_PATH="$FFMPEG_BUILD_DIR/lib/pkgconfig" .
   --enable-libvpx \
   --enable-libx264 \
   --enable-libx265 \
-  --enable-nonfree && \
-PATH="$FFMPEG_BIN_DIR:$PATH" make && \
-make install && \
+  --enable-nonfree
+PATH="$FFMPEG_BIN_DIR:$PATH" make
+make install
 hash -r
