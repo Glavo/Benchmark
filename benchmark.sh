@@ -1,17 +1,10 @@
 #!/usr/bin/env bash
 
 set -e
+source $(dirname $0)/init.sh
+set +e
 
-cd $(dirname $0)
-
-export CC=gcc-14
-export CXX=g++-14
-
-THREADS=$(grep -c ^processor /proc/cpuinfo)
-RESULT_DIR="$HOME/benchmark-result-$(date '+%F_%H%M%S')"
-DATA_DIR="$PWD/data"
-
-mkdir -p $RESULT_DIR
+bash 
 
 # FFmpeg
 
@@ -24,7 +17,6 @@ rm /dev/shm/Bosphorus_h264.mp4
 rm /dev/shm/Bosphorus_h265.mp4
 
 ## Encode
-
 if [ ! -z "$(cat /proc/cpuinfo | grep 'Raspberry Pi 4 Model B')" ]; then
    : # Unsupported
 else
@@ -54,3 +46,4 @@ openssl speed -multi $THREADS -evp sm4 | tee -a "$RESULT_DIR/openssl_multi.txt"
 
 # 7z (https://www.7-cpu.com/)
 7zz b '-mm=*' '-mmt=*' | tee "$RESULT_DIR/7z-benchmark.txt"
+
