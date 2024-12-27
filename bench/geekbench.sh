@@ -21,7 +21,7 @@ _GB6_NAME="Geekbench-6.3.0-$_GEEKBENCH_SUFFIX"
 
 if [ ! -f "/tmp/$_GB5_NAME" ]; then
     if [ ! -f "/tmp/$_GB5_NAME.tar.gz" ]; then
-        wget -O "/tmp/$_GB5_NAME.tar.gz.tmp" "$_GB_CDN/$_GB5_NAME.tar.gz"
+        wget -O "/tmp/$_GB5_NAME.tar.gz.tmp" "$_GB_CDN/$_GB5_NAME.tar.gz" \
             && mv "/tmp/$_GB5_NAME.tar.gz.tmp" "/tmp/$_GB5_NAME.tar.gz"
     fi
     tar -xvf "/tmp/$_GB5_NAME.tar.gz" -C "/tmp"
@@ -29,7 +29,7 @@ fi
 
 if [ ! -f "/tmp/$_GB6_NAME" ]; then
     if [ ! -f "/tmp/$_GB6_NAME.tar.gz" ]; then
-        wget -O "/tmp/$_GB6_NAME.tar.gz.tmp" "$_GB_CDN/$_GB6_NAME.tar.gz"
+        wget -O "/tmp/$_GB6_NAME.tar.gz.tmp" "$_GB_CDN/$_GB6_NAME.tar.gz" \
             && mv "/tmp/$_GB6_NAME.tar.gz.tmp" "/tmp/$_GB6_NAME.tar.gz"
     fi
     tar -xvf "/tmp/$_GB6_NAME.tar.gz" -C "/tmp"
