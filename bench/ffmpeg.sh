@@ -10,16 +10,18 @@ rm /dev/shm/Bosphorus_*.mp4
 
 set +e
 
-if [ ! -z "$(cat /proc/cpuinfo | grep 'Raspberry Pi 4 Model B')" ]; then
-   exit
-fi
-
 ## Encode
 
-if [ ! -z "$(ffmpeg -encoders 2>/dev/null | grep h264_omx)" ]; then
+if [ "$(uname -m)" = "riscv64" ]; then
+    H264_ENCODER=h264_omx
+    H265_ENCODER=hevc_omx
+
     ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v h264_omx -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h264_encode.txt"
+    ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v hevc_omx -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h265_encode.txt"
+elif [ -n "$(lspci | grep 'UHD Graphics')" ]; then
+    H264_ENCODER=h264_qsv
+    H265_ENCODER=hevc_qsv
+else
+    
 fi
 
-if [ ! -z "$(ffmpeg -encoders 2>/dev/null | grep hevc_omx)" ]; then
-    ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v hevc_omx -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h265_encode.txt"
-fi
