@@ -13,15 +13,14 @@ set +e
 ## Encode
 
 if [ "$(uname -m)" = "riscv64" ]; then
-    H264_ENCODER=h264_omx
-    H265_ENCODER=hevc_omx
-
-    ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v h264_omx -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h264_encode.txt"
-    ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v hevc_omx -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h265_encode.txt"
+    H264_ENCODER='h264_omx'
+    H265_ENCODER='hevc_omx'
 elif [ -n "$(lspci | grep 'UHD Graphics')" ]; then
     H264_ENCODER=h264_qsv
     H265_ENCODER=hevc_qsv
 else
-    
+    exit
 fi
 
+ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v $H264_ENCODER -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h264_encode.txt"
+ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v $H265_ENCODER -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h265_encode.txt"
