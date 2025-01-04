@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sudo adduser glavo && sudo usermod -aG sudo glavo && sudo su glavo
+
 sudo apt update && sudo apt upgrade -y && \
 sudo apt install -y \
     fish curl wget zstd lz4 xz-utils 7zip zip unzip ffmpeg zlib1g-dev screen neofetch mesa-utils \
