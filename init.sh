@@ -5,12 +5,12 @@ cd $(dirname $0)
 if [ -z "$RESULT_DIR" ]; then
     export CC=gcc-14
     export CXX=g++-14
-    export THREADS=$(grep -c ^processor /proc/cpuinfo)
+    export THREADS="$(grep -c ^processor /proc/cpuinfo)"
     export RESULT_DIR="$PWD/result-$(date '+%F_%H%M%S')"
     export DATA_DIR="$PWD/data"
     export BENCH_DIR="$PWD/bench"
 
-    mkdir -p $RESULT_DIR
+    mkdir -p "$RESULT_DIR"
 
     echo "PLATFROM: $(uname -a)"
     echo "THREADS: $THREADS"
