@@ -7,7 +7,13 @@ source "$PWD/init.sh"
 
 set +e
 
-# bash $PWD/bench/geekbench.sh
-bash "$PWD/bench/ffmpeg.sh"
-bash "$PWD/bench/openssl.sh"
-bash "$PWD/bench/7z.sh"
+if [[ $# -gt 0 ]]; then
+    for name in "$@"; do
+        bash "$PWD/bench/$name.sh"
+    done
+else
+    # bash $PWD/bench/geekbench.sh
+    bash "$PWD/bench/ffmpeg.sh"
+    bash "$PWD/bench/openssl.sh"
+    bash "$PWD/bench/7z.sh"
+fi

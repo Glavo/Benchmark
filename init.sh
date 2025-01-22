@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-cd $(dirname $0)
+set -e
+
+cd "$(dirname "$0")"
 
 if [ -z "$RESULT_DIR" ]; then
     export CC=gcc-14
@@ -8,13 +10,13 @@ if [ -z "$RESULT_DIR" ]; then
     export THREADS="$(grep -c ^processor /proc/cpuinfo)"
     export RESULT_DIR="$PWD/result-$(date '+%F_%H%M%S')"
     export DATA_DIR="$PWD/data"
-    export BENCH_DIR="$PWD/bench"
+    export CACHE_DIR="$PWD/cache"
 
     mkdir -p "$RESULT_DIR"
+    mkdir -p "$CACHE_DIR"
 
     echo "PLATFROM: $(uname -a)"
     echo "THREADS: $THREADS"
     echo "RESULT_DIR: $RESULT_DIR"
     echo "DATA_DIR: $DATA_DIR"
-    echo "BENCH_DIR: $BENCH_DIR"
 fi
