@@ -13,8 +13,8 @@ cd /tmp
 
 if [ ! -f "/tmp/ffmpeg-$FFMPEG_VERSION" ]; then
     if [ ! -f "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz" ]; then
-        wget -O "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz.tmp" "https://ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.xz" && \
-            mv "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz.tmp" "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz"
+        wget -O "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz.tmp" "https://ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.xz"
+        mv "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz.tmp" "/tmp/ffmpeg-$FFMPEG_VERSION.tar.xz"
     fi
     tar xvf "ffmpeg-$FFMPEG_VERSION.tar.xz"
 fi

@@ -35,5 +35,5 @@ if [ ! -f "/tmp/$_GB6_NAME" ]; then
     tar -xvf "/tmp/$_GB6_NAME.tar.gz" -C "/tmp"
 fi
 
-exec "/tmp/$_GB5_NAME/geekbench5"
-exec "/tmp/$_GB6_NAME/geekbench6"
+"/tmp/$_GB5_NAME/geekbench5"
+"/tmp/$_GB6_NAME/geekbench6"
