@@ -19,7 +19,7 @@ _GB_CDN="https://cdn.geekbench.com"
 _GB5_NAME="Geekbench-5.5.1-$_GEEKBENCH_SUFFIX"
 _GB6_NAME="Geekbench-6.3.0-$_GEEKBENCH_SUFFIX"
 
-if [ ! -f "$CACHE_DIR/$_GB5_NAME" ]; then
+if [ ! -d "$CACHE_DIR/$_GB5_NAME" ]; then
     if [ ! -f "$CACHE_DIR/$_GB5_NAME.tar.gz" ]; then
         wget -O "$CACHE_DIR/$_GB5_NAME.tar.gz.tmp" "$_GB_CDN/$_GB5_NAME.tar.gz"
         mv "$CACHE_DIR/$_GB5_NAME.tar.gz.tmp" "$CACHE_DIR/$_GB5_NAME.tar.gz"
@@ -27,7 +27,7 @@ if [ ! -f "$CACHE_DIR/$_GB5_NAME" ]; then
     tar -xvf "$CACHE_DIR/$_GB5_NAME.tar.gz" -C "$CACHE_DIR"
 fi
 
-if [ ! -f "$CACHE_DIR/$_GB6_NAME" ]; then
+if [ ! -d "$CACHE_DIR/$_GB6_NAME" ]; then
     if [ ! -f "$CACHE_DIR/$_GB6_NAME.tar.gz" ]; then
         wget -O "$CACHE_DIR/$_GB6_NAME.tar.gz.tmp" "$_GB_CDN/$_GB6_NAME.tar.gz"
         mv "$CACHE_DIR/$_GB6_NAME.tar.gz.tmp" "$CACHE_DIR/$_GB6_NAME.tar.gz"
