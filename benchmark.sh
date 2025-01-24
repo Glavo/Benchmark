@@ -13,7 +13,7 @@ if [[ $# -gt 0 ]]; then
     done
 else
     # bash $PWD/bench/geekbench.sh
-    bash "$PWD/bench/ffmpeg.sh"
+    # bash "$PWD/bench/ffmpeg.sh"
     bash "$PWD/bench/openssl.sh"
     bash "$PWD/bench/7z.sh"
     bash "$PWD/bench/coremark.sh"
