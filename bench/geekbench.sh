@@ -25,6 +25,7 @@ if [ ! -d "$CACHE_DIR/$_GB5_NAME" ]; then
         mv "$CACHE_DIR/$_GB5_NAME.tar.gz.tmp" "$CACHE_DIR/$_GB5_NAME.tar.gz"
     fi
     tar -xvf "$CACHE_DIR/$_GB5_NAME.tar.gz" -C "$CACHE_DIR"
+    rm "$CACHE_DIR/$_GB5_NAME.tar.gz"
 fi
 
 if [ ! -d "$CACHE_DIR/$_GB6_NAME" ]; then
@@ -33,6 +34,7 @@ if [ ! -d "$CACHE_DIR/$_GB6_NAME" ]; then
         mv "$CACHE_DIR/$_GB6_NAME.tar.gz.tmp" "$CACHE_DIR/$_GB6_NAME.tar.gz"
     fi
     tar -xvf "$CACHE_DIR/$_GB6_NAME.tar.gz" -C "$CACHE_DIR"
+    rm "$CACHE_DIR/$_GB6_NAME.tar.gz"
 fi
 
 "$CACHE_DIR/$_GB5_NAME/geekbench5" | tee "$RESULT_DIR/geekbench5.log"

@@ -9,6 +9,6 @@ sudo apt install -y \
     libass-dev libfreetype-dev libgnutls28-dev libmp3lame-dev libsdl2-dev libtool texinfo yasm \
     libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev \
     libvpx-dev libx264-dev libx265-dev libnuma-dev \
-    libunistring-dev libaom-dev libdav1d-dev libopus-dev libomxil-bellagio-dev
+    libunistring-dev libaom-dev libdav1d-dev libopus-dev # libomxil-bellagio-dev
 
 chsh -s /usr/bin/fish
