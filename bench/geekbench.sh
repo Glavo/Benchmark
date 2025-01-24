@@ -35,5 +35,5 @@ if [ ! -d "$CACHE_DIR/$_GB6_NAME" ]; then
     tar -xvf "$CACHE_DIR/$_GB6_NAME.tar.gz" -C "$CACHE_DIR"
 fi
 
-"$CACHE_DIR/$_GB5_NAME/geekbench5"
-"$CACHE_DIR/$_GB6_NAME/geekbench6"
+"$CACHE_DIR/$_GB5_NAME/geekbench5" | tee "$RESULT_DIR/geekbench5.log"
+"$CACHE_DIR/$_GB6_NAME/geekbench6" | tee "$RESULT_DIR/geekbench6.log"
