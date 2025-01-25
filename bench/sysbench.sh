@@ -2,4 +2,4 @@
 
 set -e
 
-sysbench --test=cpu run |
+sysbench --test=cpu run | tee "$RESULT_DIR/sysbench.log"
