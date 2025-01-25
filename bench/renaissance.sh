@@ -4,7 +4,7 @@ set -e
 
 RENAISSANCE_VERSION="0.16.0"
 RENAISSANCE_JAR_NAME="renaissance-gpl-$RENAISSANCE_VERSION.jar"
-VM_OPTIONS="-Xms6g -Xmx6g"
+VM_OPTIONS="-Xms12g -Xmx12g"
 BENCHMARKS=(als chi-square dec-tree gauss-mix log-regression movie-lens naive-bayes page-rank \
   akka-uct fj-kmeans reactors \
   db-shootout neo4j-analytics \
