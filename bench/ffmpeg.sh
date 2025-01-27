@@ -22,5 +22,5 @@ else
     exit
 fi
 
-ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v "$H264_ENCODER" -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h264_encode.txt"
-ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v "$H265_ENCODER" -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h265_encode.txt"
+ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v "$H264_ENCODER" -an -benchmark -pix_fmt yuv420p -f null - 2>&1 | tee "$RESULT_DIR/h264_encode.txt"
+ffmpeg -i "$DATA_DIR/Bosphorus_3840x2160.y4m" -c:v "$H265_ENCODER" -an -benchmark -pix_fmt yuv420p -f null - 2>&1 | tee "$RESULT_DIR/h265_encode.txt"
