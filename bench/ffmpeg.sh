@@ -15,9 +15,6 @@ set +e
 if [ "$(uname -m)" = "riscv64" ]; then
     H264_ENCODER='h264_omx'
     H265_ENCODER='hevc_omx'
-elif [ -n "$(lspci | grep 'UHD Graphics')" ]; then
-    H264_ENCODER=h264_qsv
-    H265_ENCODER=hevc_qsv
 else
     exit
 fi
