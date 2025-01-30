@@ -9,11 +9,11 @@ ffmpeg -threads "$THREADS" -c:v hevc -i /dev/shm/Bosphorus_h265.mp4 -an -benchma
 
 set +e
 
-if [ -z "$H264_HARDWARE_DECODER" ]; then
+if [ -n "$H264_HARDWARE_DECODER" ]; then
   ffmpeg -c:v "$H264_HARDWARE_DECODER" -i /dev/shm/Bosphorus_h264.mp4 -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h264_hardware_decode.txt"
 fi
 
-if [ -z "$H265_HARDWARE_DECODER" ]; then
+if [ -n "$H265_HARDWARE_DECODER" ]; then
   ffmpeg -c:v "$H265_HARDWARE_DECODER" -i /dev/shm/Bosphorus_h265.mp4 -an -benchmark -f null - 2>&1 | tee "$RESULT_DIR/h265_hardware_decode.txt"
 fi
 
